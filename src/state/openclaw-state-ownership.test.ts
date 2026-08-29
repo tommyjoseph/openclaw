@@ -387,7 +387,9 @@ describe("external shared-state ownership", () => {
       JSON.stringify(baselineOwnership),
       baselineOwnership.claimedAt,
     );
-    for (let index = 0; index < 256; index += 1) {
+    // Keep enough overflow pages to spill ownership from the two-page cache.
+    // The immutable reads below prove the spill without hundreds of payload rows.
+    for (let index = 0; index < 16; index += 1) {
       insert.run(`rollback-race-${index.toString().padStart(3, "0")}`, payload, index);
     }
     writer.exec("COMMIT;");
