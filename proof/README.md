@@ -15,3 +15,8 @@ Chromium 1243, viewport 1280x900. Fixture is synthetic — nodes "Alpha"/"Beta",
 
 Frames: `*-01-loaded-clean`, `*-02-dirty-draft`, before `03-draft-silently-discarded`,
 after `03-confirm-dialog`, after `04-cancel-preserved-draft`. Run logs: `*-report.md`.
+The spec itself is `capture-spec.e2e.test.ts` — drop it in `ui/src/e2e/` and run it once on each
+tree to reproduce every frame here.
+
+Contents of this branch, in full: `README.md`, `capture-spec.e2e.test.ts`, `before-report.md`,
+`after-report.md`, and the seven `*.png` frames.
