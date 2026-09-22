@@ -20,3 +20,20 @@ tree to reproduce every frame here.
 
 Contents of this branch, in full: `README.md`, `capture-spec.e2e.test.ts`, `before-report.md`,
 `after-report.md`, and the seven `*.png` frames.
+
+## Seven files, four distinct images
+
+`sha256` over the frames here:
+
+| hash (12) | files |
+|---|---|
+| `6d2c23e607af` | `before-01-loaded-clean.png`, `after-01-loaded-clean.png` |
+| `b49b2c1ba5f3` | `before-02-dirty-draft.png`, `after-02-dirty-draft.png`, `after-04-cancel-preserved-draft.png` |
+| `e5f2676b8a51` | `before-03-draft-silently-discarded.png` |
+| `f7267e85d5ee` | `after-03-confirm-dialog.png` |
+
+Each identity is part of the claim, not padding. `01` and `02` are byte-identical across the two
+runs because everything up to the target switch is unchanged by the PR, which is what makes the
+next frame the only difference. And `after-04` is byte-identical to `after-02`: after Cancel the
+page is not merely similar to its pre-switch state, it is pixel-for-pixel the same image — nothing
+was dropped, re-fetched or re-rendered.
