@@ -16,7 +16,12 @@ export function trimTextPreservingCode(
         contentStart < region.end,
     );
     if (leadingCode) {
-      trimmed = text.slice(leadingCode.start);
+      trimmed = text.slice(
+        Math.max(
+          text.lastIndexOf("\n", leadingCode.start - 1),
+          text.lastIndexOf("\r", leadingCode.start - 1),
+        ) + 1,
+      );
     }
   }
   if (mode === "both") {
